@@ -1,0 +1,41 @@
+skill: frantic-copy-audit-validator
+version: "0.1.0"
+
+catalog:
+  kind: skill
+  audience: public
+  visibility: public
+  role: canonical
+
+harness:
+  cases:
+    - name: validates-bounty-44-artifacts
+      runner: default
+      inputs:
+        evidence_path: evidence.json
+        report_path: report.md
+      expect:
+        status: sealed
+        receipt:
+          schema: runx.receipt.v1
+          state: sealed
+          disposition: closed
+          reason_code: process_closed
+
+runners:
+  default:
+    default: true
+    type: cli-tool
+    command: node
+    args:
+      - run.mjs
+    inputs:
+      evidence_path:
+        type: string
+        required: true
+        description: Path to evidence_json relative to this skill directory.
+      report_path:
+        type: string
+        required: true
+        description: Path to report markdown relative to this skill directory.
+

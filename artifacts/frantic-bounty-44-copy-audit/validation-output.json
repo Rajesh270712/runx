@@ -1,0 +1,180 @@
+{
+  "closure": {
+    "closed_at": "2026-06-21T04:07:53.010Z",
+    "disposition": "closed",
+    "reason_code": "process_closed",
+    "summary": "cli-tool default completed"
+  },
+  "execution": {
+    "exit_code": 0,
+    "skill_claim": {
+      "bounty_number": 44,
+      "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+      "observation_count": 10,
+      "replacement_count": 10,
+      "runx_cli_output": "runx-cli 0.6.8",
+      "status": "valid",
+      "validation_runx_cli_output": "runx-cli 0.6.6"
+    },
+    "stderr": "",
+    "stdout": "{\n  \"status\": \"valid\",\n  \"bounty_number\": 44,\n  \"observation_count\": 10,\n  \"replacement_count\": 10,\n  \"validation_runx_cli_output\": \"runx-cli 0.6.6\",\n  \"runx_cli_output\": \"runx-cli 0.6.8\",\n  \"follow_up_link\": \"https://github.com/auscaster/frantic-board/issues/95\"\n}",
+    "structured_output": {
+      "bounty_number": 44,
+      "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+      "observation_count": 10,
+      "replacement_count": 10,
+      "runx_cli_output": "runx-cli 0.6.8",
+      "status": "valid",
+      "validation_runx_cli_output": "runx-cli 0.6.6"
+    }
+  },
+  "payload": {
+    "bounty_number": 44,
+    "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+    "observation_count": 10,
+    "replacement_count": 10,
+    "runx_cli_output": "runx-cli 0.6.8",
+    "status": "valid",
+    "validation_runx_cli_output": "runx-cli 0.6.6"
+  },
+  "receipt": {
+    "acts": [
+      {
+        "artifact_refs": [],
+        "closure": {
+          "closed_at": "2026-06-21T04:07:53.010Z",
+          "disposition": "closed",
+          "reason_code": "process_exit",
+          "summary": "cli-tool exited successfully"
+        },
+        "criterion_bindings": [
+          {
+            "criterion_id": "process_exit",
+            "evidence_refs": [],
+            "status": "verified",
+            "summary": "cli-tool exited successfully",
+            "verification_refs": []
+          }
+        ],
+        "form": "observation",
+        "id": "act_default",
+        "intent": {
+          "constraints": [],
+          "derived_from": [],
+          "legitimacy": "Runtime graph execution was admitted by the local harness",
+          "purpose": "Run graph step default",
+          "success_criteria": [
+            {
+              "criterion_id": "process_exit",
+              "required": true,
+              "statement": "cli-tool exits successfully"
+            }
+          ]
+        },
+        "source_refs": [],
+        "summary": "Executed graph step default",
+        "target_refs": []
+      }
+    ],
+    "authority": {
+      "actor_ref": {
+        "type": "principal",
+        "uri": "runx:principal:local_runtime"
+      },
+      "attenuation": {
+        "parent_authority_ref": null,
+        "subset_proof": null
+      },
+      "authority_proof_refs": [],
+      "enforcement": {
+        "profile_hash": "sha256:runtime-skeleton-enforcement",
+        "redaction_refs": [],
+        "setup_refs": [],
+        "teardown_refs": []
+      },
+      "grant_refs": [],
+      "scope_refs": [],
+      "terms": []
+    },
+    "canonicalization": "runx.receipt.c14n.v1",
+    "created_at": "2026-06-21T04:07:53.010Z",
+    "decisions": [
+      {
+        "artifact_refs": [],
+        "choice": "open",
+        "closure": null,
+        "decision_id": "dec_default",
+        "inputs": {
+          "opportunity_refs": [],
+          "selection_ref": null,
+          "signal_refs": [],
+          "target_ref": null
+        },
+        "justification": {
+          "evidence_refs": [],
+          "summary": "runtime graph planner selected this node"
+        },
+        "proposed_intent": {
+          "constraints": [],
+          "derived_from": [],
+          "legitimacy": "Local graph execution requested this node",
+          "purpose": "Open runtime node default",
+          "success_criteria": []
+        },
+        "selected_act_id": "act_default",
+        "selected_harness_ref": null
+      }
+    ],
+    "digest": "sha256:7ebe3b7c9ea48402dd97d84ed5a295328482d21fd40ff3c37fe6445379654d27",
+    "id": "sha256:683c013e89140cfb7c4bf4b5a7aeabaf6db56dfc0c75ec76f00f2b1e67689444",
+    "idempotency": {
+      "content_hash": "sha256:run_default_927135314db7-default-content",
+      "intent_key": "sha256:run_default_927135314db7-default-intent",
+      "trigger_fingerprint": "sha256:run_default_927135314db7-default-trigger"
+    },
+    "issuer": {
+      "kid": "runx-demo-key",
+      "public_key_sha256": "sha256:3097e2dee2cb4a34b53840cdb705aed71067c36f68db0e0f559c3f3fa043315f",
+      "type": "hosted"
+    },
+    "lineage": {
+      "children": [],
+      "sync": []
+    },
+    "schema": "runx.receipt.v1",
+    "seal": {
+      "closed_at": "2026-06-21T04:07:53.010Z",
+      "criteria": [
+        {
+          "criterion_id": "process_exit",
+          "evidence_refs": [],
+          "status": "verified",
+          "summary": "cli-tool exited successfully",
+          "verification_refs": []
+        }
+      ],
+      "disposition": "closed",
+      "last_observed_at": "2026-06-21T04:07:53.010Z",
+      "reason_code": "process_closed",
+      "summary": "cli-tool default completed"
+    },
+    "signals": [],
+    "signature": {
+      "alg": "Ed25519",
+      "value": "base64:XvBCtJxpAKNmeTlo3hldoBUWr_xg-QVCbYSLPUlmvuoTVMiMLNkQjnd231kfOpV_99KNb3OR--1I1JMu1EuZBA"
+    },
+    "subject": {
+      "commitments": [],
+      "kind": "skill",
+      "ref": {
+        "type": "harness",
+        "uri": "hrn_run_default_927135314db7_default"
+      }
+    }
+  },
+  "receipt_id": "sha256:683c013e89140cfb7c4bf4b5a7aeabaf6db56dfc0c75ec76f00f2b1e67689444",
+  "run_id": "run_default_927135314db7",
+  "schema": "runx.skill_run.v1",
+  "skill_name": "frantic-copy-audit-validator",
+  "status": "sealed"
+}

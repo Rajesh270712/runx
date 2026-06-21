@@ -1,0 +1,5 @@
+public_url=https://github.com/Rajesh270712/runx/blob/bountyops/BOU-2203-frantic-copy-audit/artifacts/frantic-bounty-44-copy-audit/report.md
+report=https://github.com/Rajesh270712/runx/blob/bountyops/BOU-2203-frantic-copy-audit/artifacts/frantic-bounty-44-copy-audit/report.md
+evidence_json=https://raw.githubusercontent.com/Rajesh270712/runx/bountyops/BOU-2203-frantic-copy-audit/artifacts/frantic-bounty-44-copy-audit/evidence.json
+receipt_ref=runx:receipt:sha256:683c013e89140cfb7c4bf4b5a7aeabaf6db56dfc0c75ec76f00f2b1e67689444
+receipt_json=https://raw.githubusercontent.com/Rajesh270712/runx/bountyops/BOU-2203-frantic-copy-audit/artifacts/frantic-bounty-44-copy-audit/receipts/sha256:683c013e89140cfb7c4bf4b5a7aeabaf6db56dfc0c75ec76f00f2b1e67689444.json

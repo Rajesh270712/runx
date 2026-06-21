@@ -1,0 +1,172 @@
+{
+  "schema": "frantic.copy_audit.v1",
+  "bounty_number": 44,
+  "bounty_url": "https://gofrantic.com/bounties/p-37e6493638",
+  "github_issue_url": "https://github.com/auscaster/frantic-board/issues/95",
+  "generated_at": "2026-06-21T03:58:25Z",
+  "validation_runx_cli": {
+    "minimum_required": "0.6.6",
+    "command": "crates/target/debug/runx --version",
+    "output": "runx-cli 0.6.6",
+    "meets_requirement": true
+  },
+  "runx_cli": {
+    "minimum_required": "0.6.6",
+    "command": "npx -y @runxhq/cli@latest --version",
+    "output": "runx-cli 0.6.8",
+    "meets_requirement": true
+  },
+  "source_checks": [
+    {
+      "command": "curl -fsS https://gofrantic.com/v1/board",
+      "result": "Returned ten live open bounties in the reviewed #38-#47 slice."
+    },
+    {
+      "command": "curl -fsS https://gofrantic.com/v1/bounties/44",
+      "result": "Returned #44 as funded, visible, work_status open, claim capacity 1, occupied 0, available 1, active 0, delivered 0, accepted 0, paid 0."
+    },
+    {
+      "command": "gh issue view 95 -R auscaster/frantic-board --json number,title,state,url,assignees,labels,comments,updatedAt,author",
+      "result": "#95 open and unassigned with two claim comments."
+    },
+    {
+      "command": "gh search prs '#95' --repo auscaster/frantic-board --state open --limit 20 --json number,title,url,author,updatedAt",
+      "result": "[]"
+    },
+    {
+      "command": "gh search prs 'Frantic bounty #44' --repo auscaster/frantic-board --state open --limit 20 --json number,title,url,author,updatedAt",
+      "result": "[]"
+    },
+    {
+      "command": "gh search prs 'Audit Frantic bounty copy' --repo auscaster/frantic-board --state open --limit 20 --json number,title,url,author,updatedAt",
+      "result": "[]"
+    }
+  ],
+  "systemic_follow_up": {
+    "status": "one_off_copy_edits",
+    "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+    "rationale": "The audit found wording improvements for individual bounty descriptions, not a code or template defect requiring a new issue or PR."
+  },
+  "observations": [
+    {
+      "bounty_number": 38,
+      "bounty_url": "https://gofrantic.com/bounties/p-aedd36e3ad",
+      "title": "Publish an evidence redaction fixture pack",
+      "issue_categories": ["clarity", "artifact naming", "acceptance ambiguity"],
+      "snippets": ["fixture pack", "public_url", "evidence_json"],
+      "replacement_snippets": [
+        "Deliver a public fixture index for an evidence redaction pack. The public_url must load a stranger-readable index that links every fixture, the expected redacted output, and the command used to verify it."
+      ],
+      "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+      "review_rationale": "Workers can verify the same bar faster if the landing page and fixture index expectation is stated before the review gate."
+    },
+    {
+      "bounty_number": 39,
+      "bounty_url": "https://gofrantic.com/bounties/p-cb41cbd3ca",
+      "title": "Explain Frantic claim verification clearly",
+      "issue_categories": ["clarity", "tone", "review-gate strength"],
+      "snippets": ["Explain Frantic claim verification clearly", "public_url", "receipt_ref"],
+      "replacement_snippets": [
+        "Write a worker-facing claim verification guide. It must explain how a worker checks claim availability, proves identity requirements without exposing secrets, and confirms receipt state after claim and delivery."
+      ],
+      "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+      "review_rationale": "The task is easier to complete when the intended reader and two rerunnable checks are explicit."
+    },
+    {
+      "bounty_number": 40,
+      "bounty_url": "https://gofrantic.com/bounties/p-2ac6ae4729",
+      "title": "Audit the runx CLI first-run experience",
+      "issue_categories": ["clarity", "acceptance ambiguity", "review-gate strength"],
+      "snippets": ["first-run experience", "Re-run two captured checks"],
+      "replacement_snippets": [
+        "Audit exactly these first-run moments: install command, `runx --version`, `runx --help`, one catalog read/search command, and one failed command. Capture command, output, exit state, and the copy issue for each."
+      ],
+      "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+      "review_rationale": "A required command list prevents subjective UX-only reports and preserves the reproducible proof bar."
+    },
+    {
+      "bounty_number": 41,
+      "bounty_url": "https://gofrantic.com/bounties/p-d39bbc04d4",
+      "title": "Publish a Frantic delivery artifact linter",
+      "issue_categories": ["artifact naming", "acceptance ambiguity", "review-gate strength"],
+      "snippets": ["pr_url", "public_url", "linter"],
+      "replacement_snippets": [
+        "Deliver a linter package plus PR. The pr_url must contain the linter source and tests; public_url must load runnable usage docs; evidence_json must include at least one passing delivery and one failing delivery with exact linter output."
+      ],
+      "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+      "review_rationale": "Putting PR/source/test expectations in the deliverable sentence reduces wrong artifact submissions."
+    },
+    {
+      "bounty_number": 42,
+      "bounty_url": "https://gofrantic.com/bounties/p-d773487dd6",
+      "title": "Dogfood the Frantic MCP board reader",
+      "issue_categories": ["clarity", "acceptance ambiguity", "review-gate strength"],
+      "snippets": ["MCP board reader", "captured request and response evidence"],
+      "replacement_snippets": [
+        "Dogfood the Frantic MCP board reader against the public board surface. Capture the exact board-read call, response summary, redaction policy, and at least two checked fields from the live board response."
+      ],
+      "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+      "review_rationale": "Naming the surface and checked fields keeps MCP evidence inspectable without exposing private data."
+    },
+    {
+      "bounty_number": 43,
+      "bounty_url": "https://gofrantic.com/bounties/p-aa9de6d1a9",
+      "title": "Audit the live Frantic board health",
+      "issue_categories": ["clarity", "acceptance ambiguity", "review-gate strength"],
+      "snippets": ["board health", "live Frantic board"],
+      "replacement_snippets": [
+        "Audit live board health across claim slots, funded liability, open/delivered/accepted/paid counts, stale listings, and ledger consistency. For each finding, cite the live endpoint or bounty page and the timestamp observed."
+      ],
+      "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+      "review_rationale": "Specific health dimensions make the report objectively reviewable."
+    },
+    {
+      "bounty_number": 44,
+      "bounty_url": "https://gofrantic.com/bounties/p-37e6493638",
+      "title": "Audit Frantic bounty copy for worker clarity",
+      "issue_categories": ["clarity", "acceptance ambiguity", "artifact naming"],
+      "snippets": ["live slice", "linked issue or PR", "one-off"],
+      "replacement_snippets": [
+        "Audit at least eight live Frantic bounty pages, preferably a contiguous current slice such as #38-#47. If all findings are one-off copy edits, say that directly and use the bounty issue as the follow-up link; only open a separate issue or PR for systemic tooling or template defects."
+      ],
+      "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+      "review_rationale": "The replacement removes ambiguity about page count and follow-up obligations while preserving the verification bar."
+    },
+    {
+      "bounty_number": 45,
+      "bounty_url": "https://gofrantic.com/bounties/p-c2eb829cc3",
+      "title": "Audit Sourcey docs gaps on a real library",
+      "issue_categories": ["clarity", "acceptance ambiguity", "tone"],
+      "snippets": ["real library", "useful maintainer-facing gaps"],
+      "replacement_snippets": [
+        "Audit a real Sourcey output against one maintained library and classify each gap as source coverage, navigation, example quality, API naming, source mapping, or maintainer usefulness. Include at least one gap that a maintainer could act on."
+      ],
+      "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+      "review_rationale": "Named gap categories keep the audit useful and prevent vague docs opinions."
+    },
+    {
+      "bounty_number": 46,
+      "bounty_url": "https://gofrantic.com/bounties/p-13c5574312",
+      "title": "Publish Sourcey docs for a second ecosystem",
+      "issue_categories": ["acceptance ambiguity", "review-gate strength", "clarity"],
+      "snippets": ["second ecosystem", "selected ecosystem differs"],
+      "replacement_snippets": [
+        "Before generation, list the live or accepted Sourcey docs bounties you checked and state the ecosystem already represented. Choose a different ecosystem, record the checked bounty URLs in evidence_json, and explain why the selected library does not collide."
+      ],
+      "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+      "review_rationale": "A concrete dedupe step avoids wasted work and makes the second-ecosystem rule checkable."
+    },
+    {
+      "bounty_number": 47,
+      "bounty_url": "https://gofrantic.com/bounties/p-635dcd0362",
+      "title": "Run a public runx registry install smoke matrix",
+      "issue_categories": ["artifact naming", "acceptance ambiguity", "review-gate strength"],
+      "snippets": ["smoke matrix", "runs or inspects harness/published usage path"],
+      "replacement_snippets": [
+        "Submit a smoke matrix with columns for package ref, install command, OS, shell, runx version, registry read output, run or harness output, receipt or failure ref, and reviewer rerun command."
+      ],
+      "follow_up_link": "https://github.com/auscaster/frantic-board/issues/95",
+      "review_rationale": "A fixed matrix shape gives reviewers enough data to rerun or compare each registry package result."
+    }
+  ]
+}
