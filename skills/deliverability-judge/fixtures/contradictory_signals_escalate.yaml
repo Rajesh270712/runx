@@ -1,0 +1,93 @@
+name: contradictory-signals-escalate
+kind: skill
+target: ..
+runner: judge
+inputs:
+  campaign_context:
+    domain: mail.example.com
+    stream: lifecycle-promotions
+    planned_volume: 50000
+    audience: opted-in customers
+    evidence_window: 2026-06-25T00:00:00Z/2026-06-26T00:00:00Z
+  policy_thresholds:
+    minimum_reputation: high
+    max_bounce_rate: 0.03
+    max_complaint_rate: 0.001
+    min_inbox_placement_rate: 0.92
+    max_evidence_age_hours: 24
+  signal_evidence:
+    - source: google-postmaster
+      metric: domain_reputation
+      value: high
+      observed_at: 2026-06-25T23:00:00Z
+      receipt_ref: rcpt_postmaster_lifecycle_20260625
+      sealed: true
+    - source: esp-complaint-rollup
+      metric: complaint_rate
+      value: 0.0024
+      observed_at: 2026-06-25T23:05:00Z
+      receipt_ref: rcpt_complaint_lifecycle_20260625
+      sealed: true
+    - source: placement-probe
+      metric: inbox_placement_rate
+      value: 0.89
+      observed_at: 2026-06-25T23:10:00Z
+      receipt_ref: null
+      sealed: false
+  objective: Decide whether to resume a promotional stream after a warmup pause.
+caller:
+  answers:
+    agent_task.deliverability-judge.output:
+      deliverability_judgment:
+        decision: escalate
+        sending_lane:
+          domain: mail.example.com
+          stream: lifecycle-promotions
+          planned_volume: 50000
+        policy:
+          thresholds:
+            minimum_reputation: high
+            max_bounce_rate: 0.03
+            max_complaint_rate: 0.001
+            min_inbox_placement_rate: 0.92
+            max_evidence_age_hours: 24
+          source: operator_policy
+        evidence:
+          - source: google-postmaster
+            metric: domain_reputation
+            value: high
+            receipt_ref: rcpt_postmaster_lifecycle_20260625
+            sealed: true
+            status: pass
+          - source: esp-complaint-rollup
+            metric: complaint_rate
+            value: 0.0024
+            receipt_ref: rcpt_complaint_lifecycle_20260625
+            sealed: true
+            status: fail
+          - source: placement-probe
+            metric: inbox_placement_rate
+            value: 0.89
+            receipt_ref: null
+            sealed: false
+            status: unsealed
+        verdict: contradictory_escalate
+        recommended_action: human_review
+        rationale: High domain reputation conflicts with an over-threshold complaint rate, and the placement probe is unsealed and below policy.
+        reviewer_notes:
+          - Do not resume the promotional stream automatically.
+          - Ask a human reviewer to confirm the complaint spike and rerun a sealed placement probe.
+        receipt_expectations:
+          evidence_refs:
+            - rcpt_postmaster_lifecycle_20260625
+            - rcpt_complaint_lifecycle_20260625
+          authority: read_only_recommendation
+          mutation: false
+expect:
+  status: sealed
+  receipt:
+    schema: runx.receipt.v1
+metadata:
+  public_skill: deliverability-judge
+  source_case: contradictory-signals-escalate
+  source: skills-fixture

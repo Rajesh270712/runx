@@ -1,0 +1,43 @@
+skill: deliverability-judge
+version: "0.1.0"
+
+catalog:
+  kind: skill
+  audience: operator
+  visibility: public
+  role: canonical
+
+runners:
+  judge:
+    default: true
+    type: agent-task
+    agent: reviewer
+    task: deliverability-judge
+    outputs:
+      deliverability_judgment: object
+    artifacts:
+      named_emits:
+        deliverability_judgment: runx.deliverability.judgment.v1
+    runx:
+      category: marketing
+    inputs:
+      campaign_context:
+        type: json
+        required: true
+        description: "Sending domain, stream or campaign label, planned volume, audience, and evidence window."
+      policy_thresholds:
+        type: json
+        required: true
+        description: "Operator thresholds for reputation, bounce, complaint, placement, and evidence freshness."
+      signal_evidence:
+        type: json
+        required: true
+        description: "Provider or probe observations with source, metric, value, observed time, seal state, and receipt refs."
+      objective:
+        type: string
+        required: false
+        description: "Operator intent that focuses the decision, such as pre-send gate or resume-after-pause."
+      operator_notes:
+        type: string
+        required: false
+        description: "Policy exceptions, guard bands, or human review requirements that should affect the recommendation."

@@ -1,0 +1,106 @@
+name: sealed-healthy-signals-continue
+kind: skill
+target: ..
+runner: judge
+inputs:
+  campaign_context:
+    domain: mail.example.com
+    stream: product-updates
+    planned_volume: 25000
+    audience: opted-in customers
+    evidence_window: 2026-06-25T00:00:00Z/2026-06-26T00:00:00Z
+  policy_thresholds:
+    minimum_reputation: high
+    max_bounce_rate: 0.03
+    max_complaint_rate: 0.001
+    min_inbox_placement_rate: 0.92
+    max_evidence_age_hours: 24
+  signal_evidence:
+    - source: google-postmaster
+      metric: domain_reputation
+      value: high
+      observed_at: 2026-06-25T23:30:00Z
+      receipt_ref: rcpt_postmaster_mail_example_20260625
+      sealed: true
+    - source: esp-bounce-rollup
+      metric: bounce_rate
+      value: 0.008
+      observed_at: 2026-06-25T23:35:00Z
+      receipt_ref: rcpt_bounce_mail_example_20260625
+      sealed: true
+    - source: esp-complaint-rollup
+      metric: complaint_rate
+      value: 0.0002
+      observed_at: 2026-06-25T23:35:00Z
+      receipt_ref: rcpt_complaint_mail_example_20260625
+      sealed: true
+    - source: placement-probe
+      metric: inbox_placement_rate
+      value: 0.96
+      observed_at: 2026-06-25T23:40:00Z
+      receipt_ref: rcpt_placement_mail_example_20260625
+      sealed: true
+  objective: Pre-send gate for the next product update wave.
+caller:
+  answers:
+    agent_task.deliverability-judge.output:
+      deliverability_judgment:
+        decision: continue
+        sending_lane:
+          domain: mail.example.com
+          stream: product-updates
+          planned_volume: 25000
+        policy:
+          thresholds:
+            minimum_reputation: high
+            max_bounce_rate: 0.03
+            max_complaint_rate: 0.001
+            min_inbox_placement_rate: 0.92
+            max_evidence_age_hours: 24
+          source: operator_policy
+        evidence:
+          - source: google-postmaster
+            metric: domain_reputation
+            value: high
+            receipt_ref: rcpt_postmaster_mail_example_20260625
+            sealed: true
+            status: pass
+          - source: esp-bounce-rollup
+            metric: bounce_rate
+            value: 0.008
+            receipt_ref: rcpt_bounce_mail_example_20260625
+            sealed: true
+            status: pass
+          - source: esp-complaint-rollup
+            metric: complaint_rate
+            value: 0.0002
+            receipt_ref: rcpt_complaint_mail_example_20260625
+            sealed: true
+            status: pass
+          - source: placement-probe
+            metric: inbox_placement_rate
+            value: 0.96
+            receipt_ref: rcpt_placement_mail_example_20260625
+            sealed: true
+            status: pass
+        verdict: healthy_continue
+        recommended_action: continue_sending
+        rationale: All material evidence is sealed, fresh, and inside policy thresholds.
+        reviewer_notes:
+          - Continue the planned wave and keep normal monitoring in place.
+        receipt_expectations:
+          evidence_refs:
+            - rcpt_postmaster_mail_example_20260625
+            - rcpt_bounce_mail_example_20260625
+            - rcpt_complaint_mail_example_20260625
+            - rcpt_placement_mail_example_20260625
+          authority: read_only_recommendation
+          mutation: false
+expect:
+  status: sealed
+  receipt:
+    schema: runx.receipt.v1
+metadata:
+  public_skill: deliverability-judge
+  source_case: sealed-healthy-signals-continue
+  source: skills-fixture
