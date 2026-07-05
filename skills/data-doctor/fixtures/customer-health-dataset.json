@@ -1,0 +1,46 @@
+{
+  "name": "customer_health_sample",
+  "source": "fixture:customer-health-v1",
+  "rows": [
+    {
+      "customer_id": "C001",
+      "email": "alice@example.test",
+      "signup_date": "2026-01-15",
+      "age": 34,
+      "status": "active",
+      "monthly_spend": 42.5
+    },
+    {
+      "customer_id": "C002",
+      "email": "bob@example.test",
+      "signup_date": "2026-02-03",
+      "age": 41,
+      "status": "active",
+      "monthly_spend": 39.99
+    },
+    {
+      "customer_id": "C002",
+      "email": "",
+      "signup_date": "not-a-date",
+      "age": "unknown",
+      "status": "pending",
+      "monthly_spend": 45
+    },
+    {
+      "customer_id": "C004",
+      "email": "dana@example.test",
+      "signup_date": "2026-03-22",
+      "age": 29,
+      "status": "churned",
+      "monthly_spend": 0
+    },
+    {
+      "customer_id": "C005",
+      "email": "eli@example.test",
+      "signup_date": "2026-04-08",
+      "age": 122,
+      "status": "active",
+      "monthly_spend": 9999
+    }
+  ]
+}

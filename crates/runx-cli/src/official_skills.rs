@@ -36,6 +36,11 @@ pub(crate) const OFFICIAL_SKILLS: &[OfficialSkillLockEntry] = &[
         digest: "b93475f254b458a92936cd4612b8d01a59c371876b810eb242b06ce184f2b798",
     },
     OfficialSkillLockEntry {
+        skill_id: "runx/data-doctor",
+        version: "sha-7c18c65b92b4",
+        digest: "41a65be641775a361e49b1fd3de699074e0460344201ff268569fbba1980d363",
+    },
+    OfficialSkillLockEntry {
         skill_id: "runx/data-store",
         version: "sha-4b5c8438cb5a",
         digest: "5af0e2dd3dd2116874e4fb886e0424f4b944c136b3430a10c31e400a0249113b",

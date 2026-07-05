@@ -1,0 +1,24 @@
+{
+  "max_missing_ratio": 0,
+  "unique_keys": [
+    "customer_id"
+  ],
+  "allowed_values": {
+    "status": [
+      "active",
+      "pending",
+      "suspended"
+    ]
+  },
+  "numeric_ranges": {
+    "age": {
+      "min": 13,
+      "max": 120
+    },
+    "monthly_spend": {
+      "min": 0,
+      "max": 5000
+    }
+  },
+  "anomaly_zscore_threshold": 1.5
+}

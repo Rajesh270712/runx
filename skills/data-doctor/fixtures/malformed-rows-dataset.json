@@ -1,0 +1,8 @@
+{
+  "name": "malformed_rows_sample",
+  "source": "fixture:malformed-rows-v1",
+  "rows": {
+    "customer_id": "C999",
+    "email": "not-an-array@example.test"
+  }
+}

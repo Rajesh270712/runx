@@ -1,0 +1,83 @@
+skill: data-doctor
+version: "0.1.0"
+
+catalog:
+  kind: skill
+  audience: public
+  visibility: public
+  role: canonical
+  runtime_path: local
+
+runx:
+  mutating: false
+  idempotency:
+    key: dataset_sha256
+  scopes:
+    - dataset.fixture.read
+    - schema.fixture.read
+  policy:
+    data_classification: bounded_public_fixture
+    reads:
+      - package-relative dataset fixtures
+      - package-relative schema fixtures
+      - package-relative quality-rule fixtures
+    writes: []
+    disallows:
+      - dataset mutation
+      - unbounded export
+      - private customer data
+      - invented columns or causes
+    verifier_notes:
+      - Findings are computed only from supplied rows, schema fields, and quality rules.
+      - The malformed fixture fails closed before any quality report is emitted.
+  artifacts:
+    emits:
+      - metrics
+      - findings
+      - recommendations
+      - report
+    wrap_as: data_doctor_packet
+
+runners:
+  analyze:
+    default: true
+    type: cli-tool
+    command: /usr/bin/env
+    args:
+      - node
+      - run.mjs
+    scopes:
+      - dataset.fixture.read
+      - schema.fixture.read
+    policy:
+      reads:
+        - bounded dataset fixtures
+        - declared schema fixtures
+        - declared quality rules
+      writes: []
+      disallows:
+        - mutating dataset rows
+        - reading outside the skill directory
+        - fetching live data
+        - processing private customer data
+    outputs:
+      metrics: object
+      findings: array
+      recommendations: array
+      report: string
+    artifacts:
+      wrap_as: data_doctor_packet
+      packet: runx.data_doctor.report.v1
+    inputs:
+      dataset:
+        type: json
+        required: true
+        description: Dataset object or package-relative JSON fixture path. Must include rows array.
+      schema:
+        type: json
+        required: true
+        description: Schema object or package-relative JSON fixture path. Must include fields with name and type.
+      quality_rules:
+        type: json
+        required: true
+        description: Quality rule object or package-relative JSON fixture path.

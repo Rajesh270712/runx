@@ -1,0 +1,35 @@
+{
+  "fields": [
+    {
+      "name": "customer_id",
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "signup_date",
+      "type": "date",
+      "required": true
+    },
+    {
+      "name": "age",
+      "type": "number",
+      "required": false
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "monthly_spend",
+      "type": "number",
+      "required": true
+    }
+  ]
+}

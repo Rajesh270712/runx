@@ -1,0 +1,19 @@
+name: data-doctor-malformed-rows-refused
+kind: skill
+target: ..
+runner: analyze
+inputs:
+  dataset: fixtures/malformed-rows-dataset.json
+  schema: fixtures/customer-health-schema.json
+  quality_rules: fixtures/customer-health-rules.json
+expect:
+  status: failure
+  receipt:
+    schema: runx.receipt.v1
+    state: sealed
+    disposition: failed
+    reason_code: process_failed
+metadata:
+  public_skill: data-doctor
+  source_case: malformed-rows-refused
+  source: skills-fixture
