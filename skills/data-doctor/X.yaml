@@ -8,6 +8,35 @@ catalog:
   role: canonical
   runtime_path: local
 
+harness:
+  cases:
+    - name: data-doctor-customer-health-report
+      runner: analyze
+      inputs:
+        dataset: fixtures/customer-health-dataset.json
+        schema: fixtures/customer-health-schema.json
+        quality_rules: fixtures/customer-health-rules.json
+      expect:
+        status: sealed
+        receipt:
+          schema: runx.receipt.v1
+          state: sealed
+          disposition: closed
+          reason_code: process_closed
+    - name: data-doctor-malformed-rows-refused
+      runner: analyze
+      inputs:
+        dataset: fixtures/malformed-rows-dataset.json
+        schema: fixtures/customer-health-schema.json
+        quality_rules: fixtures/customer-health-rules.json
+      expect:
+        status: failure
+        receipt:
+          schema: runx.receipt.v1
+          state: sealed
+          disposition: failed
+          reason_code: process_failed
+
 runx:
   mutating: false
   idempotency:

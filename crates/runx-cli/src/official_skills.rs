@@ -37,7 +37,7 @@ pub(crate) const OFFICIAL_SKILLS: &[OfficialSkillLockEntry] = &[
     },
     OfficialSkillLockEntry {
         skill_id: "runx/data-doctor",
-        version: "sha-7c18c65b92b4",
+        version: "sha-5b6713e7de54",
         digest: "41a65be641775a361e49b1fd3de699074e0460344201ff268569fbba1980d363",
     },
     OfficialSkillLockEntry {
